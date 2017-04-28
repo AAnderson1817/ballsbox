@@ -3,8 +3,38 @@
   <head>
     <meta charset="utf-8">
     <title>Balls</title>
+    <link rel="stylesheet" href="./style.css">
   </head>
-  <body>
-    <canvas id="ballvas"></canvas>
-  </body>
+  <script>
+  var context;
+  var x = 100;
+  var y = 200;
+  var dx = 2;
+  var dy = 2;
+  function init()
+  {
+    context= ball.getContext('2d');
+    setInterval(draw,10);
+  }
+
+  function draw(){
+    context.clearRect(0,0,300,300);
+    context.beginPath();
+    context.fillStyle="#0000ff";
+    // Draws a circle of radius 20 at the coordinates 100,100 on the canvas
+    context.arc(x,y,20,0,Math.PI*2,true); context.closePath();
+    context.fill();
+
+    if (x<0 || x >= 300) dx=-dx;
+    if (y<0 || y >= 300) dy=-dy;
+    x+=dx;
+    y+=dy;
+  }
+
+</script>
+
+<body onLoad="init();">
+  <canvas id="ball" width="300" height="300";>
+  </canvas>
+</body>
 </html>
